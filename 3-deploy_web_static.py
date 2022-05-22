@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Fabric script based on the file 2-do_deploy_web_static.py that creates and
-distributes an archive to the web servers
+ creates and distributes an archive to your web servers,
+ using the function deploy
 """
 
 from datetime import datetime
@@ -11,7 +11,9 @@ env.hosts = ['52.90.59.238', '54.197.203.132']
 
 
 def do_pack():
-    """generates a tgz archive"""
+    """
+    packs files in a compressed tgz archive
+    """
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if isdir("versions") is False:
@@ -24,21 +26,24 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """distributes an archive to the web servers"""
+    """
+    deploy the content the packed file on do_pack function
+    to the web servers
+    """
     if exists(archive_path) is False:
         return False
     try:
-        file_n = archive_path.split("/")[-1]
-        no_ext = file_n.split(".")[0]
-        path = "/data/web_static/releases/"
+        file_name = archive_path.split("/")[-1]
+        file_no_ext = file_name.split(".")[0]
+        path_files = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, no_ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
-        run('rm /tmp/{}'.format(file_n))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
-        run('rm -rf {}{}/web_static'.format(path, no_ext))
+        run('mkdir -p {}{}/'.format(path_files, file_no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file_name, path_files, file_no_ext))
+        run('rm /tmp/{}'.format(file_name))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path_files, file_no_ext))
+        run('rm -rf {}{}/web_static'.format(path_files, file_no_ext))
         run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        run('ln -s {}{}/ /data/web_static/current'.format(path_files, file_no_ext))
         print('New version deployed!')
         return True
     except Exception:
@@ -46,7 +51,9 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """creates and distributes an archive to the web servers"""
+    """
+    call do_pack and do_deploy
+    to create and deploy an archive to the web servers"""
     try:
         archive_path = do_pack()
     except Exception:
