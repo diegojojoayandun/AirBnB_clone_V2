@@ -2,37 +2,37 @@
 # create some needed directorys, files and symbolic link
 exec { 'apt-get-update':
   command  => 'apt-get -y update',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'b':
+exec {'Install Nginx':
   command  => 'apt-get -y install nginx',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'c':
+exec {'Create test directory':
   command  => 'mkdir -p /data/web_static/releases/test/',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'d':
+exec {'Create shared directory':
   command  => 'mkdir -p /data/web_static/shared/',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'e':
+exec {'create index.html':
   command  => 'echo "<html><head></head><body>Holberton School</body></html>" > /data/web_static/releases/test/index.html',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'f':
+exec {'changed ownership':
   command  => 'chown -R ubuntu:ubuntu /data',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'g':
+exec {'create symbolic link':
   command  => 'ln -sf /data/web_static/releases/test /data/web_static/current',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'h':
+exec {'change default':
   command  => 'sed -i "/listen 80 default_server/a location /hbnb_static/ { alias /data/web_static/current/;}" /etc/nginx/sites-available/default',
-  provider => shell,
+  provider => 'shell',
 }
-exec {'i':
+exec {'restart nginx sevice':
   command  => 'service nginx restart',
-  provider => shell,
+  provider => 'shell',
 }
