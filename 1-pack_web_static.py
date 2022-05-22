@@ -10,7 +10,9 @@ import os.path
 
 
 def do_pack():
-    """generates a tgz archive"""
+    """
+    packs files in a compressed tgz archive
+    """
     try:
         if os.path.isdir("versions") is False:
             local("mkdir -p versions")
