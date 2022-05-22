@@ -4,10 +4,11 @@ Fabric script based on the file 2-do_deploy_web_static.py that creates and
 distributes an archive to the web servers
 """
 
-from fabric.api import env, local, put, run
 from datetime import datetime
+from fabric.api import *
 from os.path import exists, isdir
-env.hosts = ['52.90.59.238','54.197.203.132']
+env.hosts = ['52.90.59.238', '54.197.203.132']
+env.user = "ubuntu"
 
 
 def do_pack():
@@ -47,7 +48,9 @@ def do_deploy(archive_path):
 
 def deploy():
     """creates and distributes an archive to the web servers"""
-    archive_path = do_pack()
-    if archive_path is None:
+    try:
+        archive_path = do_pack()
+    except Exception:
         return False
+
     return do_deploy(archive_path)
