@@ -6,8 +6,8 @@
 
 from datetime import datetime
 from fabric.api import *
-from pathlib import path
-# from os.path import exists, isdir
+from pathlib import Path
+
 env.hosts = ['52.90.59.238', '54.197.203.132']
 
 
@@ -17,7 +17,7 @@ def do_pack():
     """
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
-        if path("versions") is False:
+        if Path("versions").exists() is False:
             local("mkdir versions")
         file_name = "versions/web_static_{}.tgz".format(date)
         local("tar -cvzf {} web_static".format(file_name))
@@ -31,7 +31,7 @@ def do_deploy(archive_path):
     deploy the content the packed file on do_pack function
     to the web servers
     """
-    if path(archive_path) is False:
+    if Path(archive_path).exists() is False:
         return False
     try:
         file_name = archive_path.split("/")[-1]
@@ -70,7 +70,7 @@ def do_clean(number=0):
     Deletes out-of-date archives,
     using the function do_clean() to delete
     """
-    files = local("ls -lt versions", capture=True)
+    files = local("ls -1t versions", capture=True)
     file_names = files.split("\n")
     n = int(number)
     if n in (0, 1):
