@@ -21,7 +21,7 @@ def HBNB():
     """
     display "HBNB"
     """
-    return '{}'.format("Hello HBN")
+    return '{}'.format("HBNB")
 
 
 if __name__ == '__main__':

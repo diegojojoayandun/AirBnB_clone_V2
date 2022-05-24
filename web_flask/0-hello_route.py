@@ -13,7 +13,7 @@ def hello_HBNB():
     """
     display "Hello HBNB!"
     """
-    return '{}'.format("Hello HBN")
+    return '{}'.format("Hello HBNB!")
 
 
 if __name__ == '__main__':
