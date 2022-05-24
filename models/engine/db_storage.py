@@ -65,7 +65,7 @@ class DBStorage:
         self.__session.remove()
 
     def reload(self):
-        """create all reload data
+        """create all reload data.
         """
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,

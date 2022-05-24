@@ -22,7 +22,7 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
-            """returns the list of City instances with state_id"""
+            """returns the list of City instances with state_id."""
             cities_list = []
             _cities = models.storage.all(City)
             for _city in _cities.values():
