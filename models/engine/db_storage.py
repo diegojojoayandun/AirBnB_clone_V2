@@ -28,7 +28,7 @@ class DBStorage:
         self.__engine = create_engine(db, pool_pre_ping=True)
 
         if os.getenv("HBNB_ENV") == "test":
-            Base.metadata.drop_all(self.__engine)
+            Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
         dic_cls = {}
