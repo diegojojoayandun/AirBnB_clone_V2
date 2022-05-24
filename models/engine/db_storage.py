@@ -60,10 +60,6 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
 
-    def close(self):
-        """call remove() method on the private session attribute"""
-        self.__session.remove()
-
     def reload(self):
         """create all reload data.
         """
@@ -72,3 +68,7 @@ class DBStorage:
                                        expire_on_commit=False)
         self.__session = scoped_session(
             session_factory)
+
+    def close(self):
+        """call remove() method on the private session attribute"""
+        self.__session.remove()
