@@ -15,7 +15,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def storage_close(self):
+def storage_close(exception):
     '''Close current session'''
     storage.close()
 
