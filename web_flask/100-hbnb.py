@@ -1,32 +1,28 @@
 #!/usr/bin/python3
-"""
-Task 12. HBNB is alive!
-"""
+""" Task 100: script that starts a Flask web application """
 
 from flask import Flask, render_template
-from models import *
+from models import storage
 from models.state import State
+from models.city import City
 from models.amenity import Amenity
 from models.place import Place
-from models.city import City
-
+from models.user import User
 
 app = Flask(__name__)
 
 
-@app.route('/hbnb', strict_slashes=False)
-def hbnb_filters():
-    """
-    Route /hbnb
-    """
-    states = storage.all(State)
-    amenities = storage.all(Amenity)
-    cities = storage.all(City)
-    places = storage.all(Place)
-
-    return render_template('100-hbnb.html', states=states,
-                           amenities=amenities, cities=cities, places=places)
-
+@app.route("/hbnb", strict_slashes=False)
+def task_100(id=None):
+    """ Task 100 Function """
+    list_states = storage.all(State)
+    list_amenities = storage.all(Amenity)
+    list_places = storage.all(Place)
+    list_users = storage.all(User)
+    return(render_template("100-hbnb.html", list_states=list_states,
+                           list_amenities=list_amenities,
+                           list_places=list_places,
+                           list_users=list_users))
 
 @app.teardown_appcontext
 def storage_close(self):
