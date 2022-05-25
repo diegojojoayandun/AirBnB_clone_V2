@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""task 11 flask"""
+"""
+Task 11. HBNB filters
+"""
 
 from flask import Flask, render_template
 from models import *
@@ -22,9 +24,9 @@ def hbnb_filters():
 
 @app.teardown_appcontext
 def storage_close(self):
-    '''
-    Teardown_appcontext closes the app context
-    '''
+    """
+    Teardown_appcontext close
+    """
     storage.close()
 
 

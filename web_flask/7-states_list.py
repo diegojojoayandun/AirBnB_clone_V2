@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Task7 - states list"""
+"""
+Task 8. List of states
+"""
 
 from flask import Flask, render_template
 from models import *
@@ -11,7 +13,7 @@ app = Flask(__name__)
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """
-    route /states_list (Objects State)
+    route /states_list
     """
     states = storage.all(State)
     return render_template('7-states_list.html', states=states)
@@ -19,9 +21,9 @@ def states_list():
 
 @app.teardown_appcontext
 def storage_close(exception):
-    '''
-    teardown close
-    '''
+    """
+    Teardown_appcontext close
+    """
     storage.close()
 
 

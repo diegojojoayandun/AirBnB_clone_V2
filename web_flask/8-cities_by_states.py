@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Task8 - script that starts a Flask web application
+Task 9. Cities by states
 """
 
 from flask import Flask, render_template
@@ -12,7 +12,9 @@ app = Flask(__name__)
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
-    """routes cities_by_states: display a render HTML page"""
+    """
+    Routes /cities_by_states
+    """
     states = storage.all(State)
     return render_template('8-cities_by_states.html', states=states)
 
@@ -20,7 +22,7 @@ def cities_by_states():
 @app.teardown_appcontext
 def storage_close(self):
     """
-    teardown close
+    Teardown_appcontext close
     """
     storage.close()
 

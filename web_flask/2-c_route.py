@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-script that starts a Flask web application
+Task 2. C is fun! starts a Flask web application
 """
 
 from flask import Flask
@@ -26,7 +26,9 @@ def HBNB():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
-    """display “C ” followed by the value of the text variable"""
+    """
+    Display “C ” followed by the value of the text variable
+    """
     return 'C ' + text.replace('_', ' ')
 
 
