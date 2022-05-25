@@ -13,40 +13,48 @@
 	float: left;
 	height: 100%;
 	width: 25%;
-
+	opacity: 1;
 	line-height: 20px;
 	border-right: 1px solid #DDDDDD;
 }
 
-.filter_amenities {
+.amenities {
 	display: inline;
 	vertical-align: middle;
 	height: 100%;
 	float: left;
     width: 25%;
-
 	line-height: 20px;
+	opacity: 1;
+	border-right: 1px solid #DDDDDD;
 }
 
 .popover {
+	position: relative;
 	list-style-type: none;
 	display: none;
 	background-color: #FAFAFA;
 	width: 100%;
-
 	margin-left: -1px;
 	margin-top: 8px;
 	padding: 25px 0px;
-
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+	opacity: 1;
+	max-height: 300px;
+	overflow-y: auto;
+	z-index: 1;
+}
+
+.popover::-webkit-scrollbar {
+	display: none;
 }
 
 .locations:hover .popover {
 	display: inline-block;
 }
 
-.filter_amenities:hover .popover {
+.amenities:hover .popover {
 	display: inline-block;
 }
 
@@ -55,9 +63,6 @@ ul {
 	padding: 0px;
 	padding-bottom: 20px;
 }
-
-li {
-}	
 
 h2 {
 	font-size: 16px;
@@ -68,7 +73,7 @@ h2 {
 h3 {
 	font-weight: 600;
 	margin-top: 12px;
-	margin-bottom: 5px;	
+	margin-bottom: 5px;
 	padding-left: 45px;
 }
 
@@ -83,7 +88,6 @@ h4 {
 button {
 	color: #FFFFFF;
 	font-size: 18px;
-	
 	height: 48px;
 	width: 20%;
 	background-color: #FF5A5F;
