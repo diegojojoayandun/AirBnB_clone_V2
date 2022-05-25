@@ -23,7 +23,7 @@
 					<h3>States</h3>
 					<h4>&nbsp;</h4>
 					<ul class="popover">
-                        {% for state in list_states.values() | sort(attribute='name') %}
+                        {% for state in states.values() | sort(attribute='name') %}
                             <li><h2>{{ state.name }}</h2>
                                 <ul>
                                     {% for city in state.cities  | sort(attribute='name') %}
@@ -39,8 +39,8 @@
 					<h3>Amenities</h3>
 					<h4>&nbsp;</h4>
 					<ul class="popover">
-                        {% for amenities in list_amenities.values()  | sort(attribute='name') %}
-                            <li><h4>{{ amenities.name }}</h4></li>
+                        {% for amenitie in amenities.values()  | sort(attribute='name') %}
+                            <li><h4>{{ amenitie.name }}</h4></li>
                         {% endfor %}
 					</ul>
 				</div>
@@ -48,35 +48,35 @@
             <!-- begin section places -->
 			<section class="places">
 				<h1>Places</h1>
-                {% for places in list_places.values()  | sort(attribute='name') %}
+                {% for place in places.values()  | sort(attribute='name') %}
                     <article>
                         <div class="headline">
-                            <h2>{{ places.name }}</h2>
-                            <div class="price_by_night">{{ places.price_by_night }}</div>
+                            <h2>{{ place.name }}</h2>
+                            <div class="price_by_night">{{ place.price_by_night }}</div>
                         </div>
                         <div class="information">
                             <div class="max_guest">
                                 <div class="guest_icon"></div>
-                                <p>{{ places.max_guest }}</p>
+                                <p>{{ place.max_guest }}</p>
                             </div>
                             <div class="number_rooms">
                                 <div class="bed_icon"></div>
-                                <p> {{ places.number_rooms }}</p>
+                                <p> {{ place.number_rooms }}</p>
                             </div>
                             <div class="number_bathrooms">
                                 <div class="bath_icon"></div>
-                                <p>{{ places.number_bathrooms }}</p>
+                                <p>{{ place.number_bathrooms }}</p>
                             </div>
                         </div>
-                        {% for users in list_users.values() %}
-                            {% if places.user_id == users.id %}
+                        {% for user in users.values() %}
+                            {% if place.user_id == user.id %}
                                 <div class="user">
-                                    <b>Owner</b>: {{ users.first_name }} {{ users.last_name }}
+                                    <b>Owner</b>: {{ user.first_name }} {{ user.last_name }}
                                 </div>
                             {% endif %}
                         {% endfor %}
                         <div class="description">
-                            {{ places.description|safe }}
+                            {{ place.description|safe }}
                         </div>
                     </article>
                 {% endfor %}
