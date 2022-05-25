@@ -28,8 +28,8 @@ article {
 	display: flex;
 	flex-direction: row;
 	position: relative;
-
-	height: 80px;
+	z-index:0;
+	height: auto;
 	width: 100%;
 }
 
@@ -37,8 +37,6 @@ article {
 	display: flex;
 	justify-content: center;
 	align-self: flex-end;
-
-	position: absolute;
 	right: 0;
 
 	line-height: 60px;
@@ -50,7 +48,7 @@ article {
 	float: right;
 	min-width: 60px;
 	height: 60px;
-    align-self: center;
+	align-self: center;
 }
 
 .information {
